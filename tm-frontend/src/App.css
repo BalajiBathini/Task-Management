@@ -1,38 +1,324 @@
-.App {
+body {
+  background-color: grey;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem; /* Reduced for smaller screens */
+  color: white;
+  margin-top: 20px;
+}
+
+.task-manager-wrapper {
+  background-color: #353434;
+  padding: 5%; /* Increased padding for smaller screens */
+  width: 90%; /* Adjusted width for better display */
+  margin: 3% auto;
+  max-height: 80vh;
+  
+  box-shadow: 0px 5px 7px rgb(26, 25, 25);
+  border-radius: 8px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column; /* Stacking on smaller screens */
+  align-items: flex-start;
+  border-bottom: 1px solid #4d4d4d;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width for mobile */
+  margin: 0; /* Remove side margin */
+}
+
+.task-input label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #b3b3b3;
+}
+
+.task-input input,
+.task-input textarea,
+.task-input select {
+  width: 100%;
+  background-color: #414040;
+  border: none;
+  padding: 10px;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+
+.task-btn {
+ 
+  background-color: rgb(0, 230, 122);
+  color: white;
+  padding: 15px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 20px; /* Ensure it has space on top */
+}.cancel-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+   padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.task-list {
+  list-style-type: none !important; /* Remove bullet points */
+  padding: 0 !important;            /* Remove default padding */
+  margin: 0 !important;             /* Remove default margin */
+}
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #414040;
+  padding: 15px;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgb(39, 38, 38);
+}
+
+.task-list-item h3 {
+  font-size: 1.25rem; /* Reduce font size for mobile */
+}
+
+.task-actions {
+  justify-content: center; /* Center action buttons on mobile */
+  gap: 5px; /* Reduce gap for mobile */
+  margin-top: 10px; /* Add margin for space between buttons */
+}
+
+.task-actions button {
+  background: none; /* Remove button default background */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Change cursor to pointer */
+  padding: 5px;
+  font-size: 20px; /* Add some padding for better clickability */
+  transition: transform 0.2s; /* Add a transition for scaling effect */
+}
+
+.task-actions button:hover {
+  transform: scale(1.1); /* Slightly scale up on hover */
+}
+
+/* Style for the edit icon */
+.task-actions button.edit {
+  color: white; /* Dark blue color for edit icon */
+}
+.task-actions button.edit:hover {
+  color: darkcyan; /* Dark blue color for edit icon */
+}
+
+/* Style for the delete icon */
+.task-actions button.delete {
+  color: white; 
+  margin-left: 7px;/* Red color for delete icon */
+}/* Style for the delete icon */
+.task-actions button.delete:hover {
+  color: red; /* Red color for delete icon */
+}
+.task-from-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-task-form {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px rgb(20, 20, 20);
+}
+
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select {
+  width: 100%;
+  background-color: #414040;
+  border: none;
+  padding: 10px;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.edit-task-form button {
+  background-color: rgb(0, 230, 122);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+.edit-task-form .cancelbtn{
+  background-color: red !important;
+}
+
+/* Media queries for mobile responsiveness */
+@media only screen and (max-width: 768px) {
+  .task-manager-wrapper {
+    width: 95%; /* More width for smaller screens */
+    padding: 5%; /* Increased padding */
+  }
+
+  h1 {
+    font-size: 2.5rem; /* Larger font for tablet-sized devices */
+  }
+
+
+  .task-actions {
+    gap: 5px; /* Reduce the gap between buttons on mobile */
+    justify-content: space-around; /* Distribute buttons on mobile */
+  }
+  
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem; /* Smaller font size for small phones */
+  }
+
+  .task-form {
+    flex-direction: column; /* Stack form fields vertically */
+  }
+  .close {
+  
+    margin-left: 100px !important;
+  }
+
+  .task-input {
+    margin-right: 0; /* Remove right margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+
+ 
+  
+  .task-list-item {
+    flex-direction: column; /* Stack items on small devices */
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .task-list-item {
+    padding: 10px; /* Reduce padding on smaller devices */
+  }
+
+  .task-list-item h3 {
+    font-size: 1.2rem; /* Smaller title on mobile */
+  }
+}
+.top-right-btn {
+  position: fixed;
+  bottom: 50px;
+  right: 25px;
+  width: 60px;  /* Set width for circle */
+  height: 60px; /* Set height for circle */
+  background-color: rgb(0, 230, 122);
+  color: white;
+  border: none;
+  border-radius: 50%; /* Make it circular */
+  display: flex; /* Center icon */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  font-size: 24px; /* Icon size */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.top-right-btn:hover {
+  background-color: rgb(0, 225, 120); /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+footer{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.modal {
+  display: flex !important; /* Ensure modal is displayed as flex for proper alignment */
+  align-items: center;      /* Center items vertically */
+  justify-content: center;  /* Center items horizontally */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.modal-dialog {
+  max-width: 500px;         /* Set maximum width of the modal */
+  margin: 1.75rem auto;     /* Center the modal with some top/bottom margin */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.modal-content {
+   
+  color: black;   /* Rounded corners for the modal */
+  
 }
 
-.App-link {
-  color: #61dafb;
+.modal-header {
+  border-bottom: none;
+  color: black;       /* Remove border for a cleaner look */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-title {
+  font-size: 1.25rem;        /* Adjust title font size */
+}
+
+.modal-body {
+  font-size: 1rem;           /* Default font size for body text */
+  padding: 1rem;            /* Standard padding inside the body */
+}
+
+.modal-footer {
+  border-top: none;          /* Remove border for a seamless footer */
+}
+
+
+
+.btn-danger {
+  background-color: #dc3545; /* Bootstrap danger color */
+  border-color: #dc3545;     /* Match border color with the background */
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Bootstrap secondary color */
+  border-color: #6c757d;     /* Match border color with the background */
+}
+
+.btn:hover {
+  opacity: 0.8;               /* Slight opacity effect on hover */
+}
+.close {
+  float: right;
+  margin-left: 250px;
 }
