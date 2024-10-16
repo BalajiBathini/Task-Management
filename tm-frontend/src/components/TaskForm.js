@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 const TaskForm = ({ handleCreateTask, newTask, setNewTask }) => {
     const [showForm, setShowForm] = useState(false);
 
@@ -9,7 +10,7 @@ const TaskForm = ({ handleCreateTask, newTask, setNewTask }) => {
     return (
         <>
             <button className="top-right-btn" onClick={toggleForm} aria-label="Add New Task">
-            <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} />
             </button>
 
             {showForm && (
@@ -21,9 +22,7 @@ const TaskForm = ({ handleCreateTask, newTask, setNewTask }) => {
                                 type="text"
                                 placeholder="Task Title"
                                 value={newTask.title}
-                                onChange={(e) =>
-                                    setNewTask({ ...newTask, title: e.target.value })
-                                }
+                                onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
                                 required
                             />
                         </div>
@@ -33,9 +32,7 @@ const TaskForm = ({ handleCreateTask, newTask, setNewTask }) => {
                             <textarea
                                 placeholder="Task Description"
                                 value={newTask.description}
-                                onChange={(e) =>
-                                    setNewTask({ ...newTask, description: e.target.value })
-                                }
+                                onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                             />
                         </div>
 
@@ -43,21 +40,20 @@ const TaskForm = ({ handleCreateTask, newTask, setNewTask }) => {
                             <label>Status:</label>
                             <select
                                 value={newTask.status}
-                                onChange={(e) =>
-                                    setNewTask({ ...newTask, status: e.target.value })
-                                }
+                                onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
                             >
                                 <option value="pending">Pending</option>
                                 <option value="completed">Completed</option>
                             </select>
                         </div>
+
                         <div className="actions">
-                        <button className="task-btn" type="submit">
-                            Add Task
-                        </button>
-                        <button className="cancel-btn" onClick={toggleForm}>
-                            Cancel
-                        </button>
+                            <button className="task-btn" type="submit">
+                                Add Task
+                            </button>
+                            <button className="cancel-btn" type="button" onClick={toggleForm}>
+                                Cancel
+                            </button>
                         </div>
                     </form>
                 </div>

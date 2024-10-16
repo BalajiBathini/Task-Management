@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import TaskEditModal from './TaskEditModal';
+import { createTask, deleteTask, listTasks, updateTask } from '../server/TaskServer';
 
 const TaskManager = () => {
     const [tasks, setTasks] = useState([]);
@@ -15,16 +14,16 @@ const TaskManager = () => {
     const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
-        axios
-            .get('http://localhost:8081/api/tasks')
-            .then((response) => setTasks(response.data))
+        listTasks()
+            .then((response) => {
+                setTasks(response.data);
+            })
             .catch((error) => console.error('Error fetching tasks:', error));
     }, []);
 
     const handleCreateTask = (e) => {
         e.preventDefault();
-        axios
-            .post('http://localhost:8081/api/tasks', newTask)
+        createTask(newTask)
             .then((response) => {
                 setTasks([...tasks, response.data]);
                 setNewTask({ title: '', description: '', status: 'pending' });
@@ -33,8 +32,8 @@ const TaskManager = () => {
     };
 
     const handleUpdateTask = (task) => {
-        axios
-            .put(`http://localhost:8081/api/tasks/${task.id}`, task)
+        // Assuming the updateTask function is correct in TaskServer
+        updateTask(task.id, task)
             .then((response) => {
                 const updatedTasks = tasks.map((t) =>
                     t.id === task.id ? response.data : t
@@ -46,8 +45,7 @@ const TaskManager = () => {
     };
 
     const handleDeleteTask = (id) => {
-        axios
-            .delete(`http://localhost:8081/api/tasks/${id}`)
+        deleteTask(id)
             .then(() => {
                 setTasks(tasks.filter((task) => task.id !== id));
             })

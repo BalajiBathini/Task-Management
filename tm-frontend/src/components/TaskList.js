@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash,faX } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
 
 const TaskList = ({ tasks, setSelectedTask, handleDeleteTask }) => {
     const [showModal, setShowModal] = useState(false);
@@ -40,7 +40,6 @@ const TaskList = ({ tasks, setSelectedTask, handleDeleteTask }) => {
                 ))}
             </ul>
 
-            {/* Bootstrap Modal for Confirmation */}
             {showModal && (
                 <div className="modal show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
                     <div className="modal-dialog" role="document">
@@ -48,7 +47,7 @@ const TaskList = ({ tasks, setSelectedTask, handleDeleteTask }) => {
                             <div className="modal-header">
                                 <h5 className="modal-title">Confirm Deletion</h5>
                                 <button type="button" className="close" onClick={() => setShowModal(false)}>
-                                <FontAwesomeIcon icon={faX} />
+                                    <FontAwesomeIcon icon={faX} />
                                 </button>
                             </div>
                             <div className="modal-body">
